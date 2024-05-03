@@ -3,7 +3,7 @@ import axios from "axios";
 import "./file.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-let url = 'https://crudserver-tmob.onrender.com'
+let url = 'merncrud-rouge.vercel.app'
 
 const About = () => {
   const notify = (message) => toast(message);
