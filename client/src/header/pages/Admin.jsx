@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+let url = 'merncrud-rouge.vercel.app';
 const Admin = () => {
   const [data, setData] = useState([]);
   const notify = (message) => toast(message);
@@ -18,7 +18,7 @@ const Admin = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post('http://localhost:4100');
+        const response = await axios.post(url);
         setData(response.data);
       } catch (error) {
         throw error
@@ -31,7 +31,7 @@ const Admin = () => {
   const handleonClick =async (iid) => {
     
     try{
-      const res = await axios.delete(`http://localhost:4100/delete/${iid}`)
+      const res = await axios.delete(`${url}/delete/${iid}`)
       if(res.data == 'delete'){
         throw res.data
       }else{
@@ -39,7 +39,7 @@ const Admin = () => {
           notify('Data Deleted')
         }, 500);
         try {
-          const response = await axios.post('http://localhost:4100');
+          const response = await axios.post(url);
           setData(response.data);
         } catch (error) {
           throw error
@@ -69,14 +69,14 @@ const Admin = () => {
   const subData =async (e) => {
     e.preventDefault()
     try{
-      let res = await axios.put('http://localhost:4100/update' , userData)
+      let res = await axios.put(`${url}/update` , userData)
       if(res.data){
         document.querySelector('.updateForm').style.display = 'none';
         notify('Data updated')
         
 
         try {
-          const response = await axios.post('http://localhost:4100');
+          const response = await axios.post(url);
           setData(response.data);
         } catch (error) {
           throw error
